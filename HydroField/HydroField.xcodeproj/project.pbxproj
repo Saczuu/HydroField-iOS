@@ -10,9 +10,22 @@
 		A4CD5A7A2DA15057002281D0 /* HydroField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HydroField.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A492DE352DA159E000D55F81 /* Exceptions for "HydroField" folder in "HydroField" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A4CD5A792DA15057002281D0 /* HydroField */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A4CD5A7C2DA15057002281D0 /* HydroField */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A492DE352DA159E000D55F81 /* Exceptions for "HydroField" folder in "HydroField" target */,
+			);
 			path = HydroField;
 			sourceTree = "<group>";
 		};
@@ -255,6 +268,9 @@
 				DEVELOPMENT_TEAM = U6CZ4PM7MY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HydroField/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "The application requires a Bluetooth connection to communicate with the IoT device.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "The application requires a Bluetooth connection to communicate with the IoT device.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -283,6 +299,9 @@
 				DEVELOPMENT_TEAM = U6CZ4PM7MY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HydroField/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "The application requires a Bluetooth connection to communicate with the IoT device.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "The application requires a Bluetooth connection to communicate with the IoT device.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
