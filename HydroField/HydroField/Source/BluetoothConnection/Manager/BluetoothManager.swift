@@ -1,5 +1,5 @@
 //
-//  BluetoothConnectionManager.swift
+//  BluetoothManager.swift
 //  HydroField
 //
 //  Created by Maciej Sączewski on 05/04/2025.

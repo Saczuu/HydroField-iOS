@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct BluetoothConnectionView: View {
-    @State var btManager = BluetoothConnectionManager()
+    @State var manager: BluetoothManager = .shared
     
     var body: some View {
         VStack {
             Spacer()
-            Text("Bluetooth: \(btManager.isBluetoothEnabled ? "Enabled" : "Disabled")")
+            Text("Bluetooth: \(manager.managerState)")
             Button {
-                btManager.scanForPeripherial()
+                manager.startScanning()
             } label: {
                 Text("Scan")
             }
