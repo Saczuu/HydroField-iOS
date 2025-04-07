@@ -17,7 +17,7 @@ struct BluetoothConnectionView: View {
             Button {
                 manager.startScanning()
             } label: {
-                Text("Scan")
+                ScanButtonView(isAnimating: $manager.isScanning)
             }
             .padding([.top], 100)
             Spacer()
