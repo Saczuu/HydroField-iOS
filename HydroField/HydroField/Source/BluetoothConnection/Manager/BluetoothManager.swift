@@ -32,6 +32,7 @@ final class BluetoothManager: NSObject, ObservableObject {
         super.init()
         self.managerState = .starting
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
+        self.managerState = centralManager.state == .poweredOn ? .operational : .error
     }
 
     /// Starts scanning for peripherals.

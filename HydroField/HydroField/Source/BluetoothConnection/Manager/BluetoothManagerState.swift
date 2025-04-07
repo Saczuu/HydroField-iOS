@@ -14,6 +14,9 @@ enum BluetoothManagerState: String {
     /// The Bluetooth manager has started and is initializing.
     case starting
 
+    /// The Bluetooth manager was initialized and started sucesfully
+    case operational
+
     /// The Bluetooth manager is actively scanning for peripherals.
     case scanning
 
