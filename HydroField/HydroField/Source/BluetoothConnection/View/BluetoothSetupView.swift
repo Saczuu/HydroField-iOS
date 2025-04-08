@@ -33,7 +33,29 @@ struct BluetoothConnectionView: View {
                     path.append(.wifi)
                 }
             }
+            
+            VStack {
+                Spacer()
+                createCurrentStateLabel()
+            }
         }
+    }
+    
+    @ViewBuilder
+    private func createCurrentStateLabel() -> some View {
+        switch manager.managerState {
+        case .scanning:
+            Text("Looking for supported devices.").font(.caption).foregroundStyle(Color.gray)
+        case .connecting:
+            Text("Attempting connection to device.").font(.caption).foregroundStyle(Color.gray)
+        case .connected:
+            Text("Successfully connected to device").font(.caption).foregroundStyle(Color.gray)
+        case .error:
+            Text("Unable connect to device, try scanning again.").font(.caption).foregroundStyle(Color.gray)
+        default:
+            EmptyView()
+        }
+            
     }
 }
 

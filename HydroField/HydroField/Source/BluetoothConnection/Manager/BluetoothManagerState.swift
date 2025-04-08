@@ -19,6 +19,9 @@ enum BluetoothManagerState: String {
 
     /// The Bluetooth manager is actively scanning for peripherals.
     case scanning
+    
+    /// The Bluetooth manage is actively connecting to peripherial.
+    case connecting
 
     /// The Bluetooth manager is connected to a peripheral.
     case connected

@@ -65,6 +65,7 @@ final class BluetoothManager: NSObject, ObservableObject {
     /// Connects to a specified peripheral.
     /// - Parameter peripheral: The peripheral to connect to.
     func connect(to peripheral: CBPeripheral) {
+        managerState = .connecting
         centralManager.connect(peripheral, options: nil)
     }
 
