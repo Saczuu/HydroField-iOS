@@ -15,30 +15,25 @@ struct BluetoothConnectionView: View {
         ZStack {
             VStack {
                 Spacer()
-
-                Text("Bluetooth: \(manager.managerState)")
-                    .font(.title2)
-                    .padding()
-
+                
                 Button {
                     manager.startScanning()
                 } label: {
                     ScanButtonView(isAnimating: $manager.isScanning)
                 }
-                .padding(.top, 100)
-
+                .padding(.top, 150)
+                
                 Spacer()
             }
-            .onDisappear {
-                manager.stopScanning()
-            }
+            .onAppear(perform: {
+                manager.disconnect()
+            })
             .onChange(of: manager.isConnected) { oldValue, newValue in
                 if newValue {
                     path.append(.wifi)
                 }
             }
         }
-        .navigationTitle("Bluetooth Connection")
     }
 }
 
