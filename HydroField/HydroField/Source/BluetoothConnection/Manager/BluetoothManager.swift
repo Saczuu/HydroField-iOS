@@ -17,6 +17,9 @@ final class BluetoothManager: NSObject, ObservableObject {
 
     /// The currently connected peripheral, if any.
     @Published var connectedPeripheral: CBPeripheral?
+    
+    /// Indicates whether any parypherial got connected.
+    @Published var isConnected: Bool = false
 
     /// The current state of the Bluetooth manager.
     @Published var managerState: BluetoothManagerState = .notStarted
@@ -32,34 +35,37 @@ final class BluetoothManager: NSObject, ObservableObject {
         super.init()
         self.managerState = .starting
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
-        self.managerState = centralManager.state == .poweredOn ? .operational : .error
     }
 
     /// Starts scanning for peripherals.
     func startScanning() {
+        isScanning.toggle()
         guard centralManager.state == .poweredOn else {
             managerState = .error
             return
         }
-
+        managerState = .scanning
         discoveredPeripherals.removeAll()
         centralManager.scanForPeripherals(withServices: nil, options: nil)
-        isScanning = true
-        managerState = .scanning
     }
 
     /// Stops scanning for peripherals.
     func stopScanning() {
         centralManager.stopScan()
         isScanning = false
-        managerState = .disconnected
+        
+        // Reset manager state
+        guard centralManager.state == .poweredOn else {
+            managerState = .error
+            return
+        }
+        managerState = .readyToPair
     }
 
     /// Connects to a specified peripheral.
     /// - Parameter peripheral: The peripheral to connect to.
     func connect(to peripheral: CBPeripheral) {
         centralManager.connect(peripheral, options: nil)
-        managerState = .starting
     }
 
     /// Disconnects from the currently connected peripheral.
@@ -82,7 +88,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
         case .poweredOn:
-            managerState = .starting
+            managerState = .readyToPair
             // Auto-start scanning if needed
         default:
             managerState = .error
@@ -94,21 +100,36 @@ extension BluetoothManager: CBCentralManagerDelegate {
         if !discoveredPeripherals.contains(peripheral) {
             discoveredPeripherals.append(peripheral)
         }
+        
+        guard let peripheralName = peripheral.name,
+              peripheralName.starts(with: "HydroField-BT") else {
+            return
+        }
+        print("Attempting connection to newly discover peripherial...")
+        connect(to: peripheral)
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         connectedPeripheral = peripheral
+        self.stopScanning()
+        
+        print("Sucessfully connected to peripheral: \(peripheral.name)")
         managerState = .connected
+        isConnected = true
     }
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral,
                         error: Error?) {
+        print("Unable to connect to peripherial with: \(error?.localizedDescription)")
         handleError(error)
+        startScanning()
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral,
                         error: Error?) {
+        print("Disconnected from peripheral: \(error?.localizedDescription)")
         connectedPeripheral = nil
+        isConnected = false
         if let error = error {
             handleError(error)
         } else {

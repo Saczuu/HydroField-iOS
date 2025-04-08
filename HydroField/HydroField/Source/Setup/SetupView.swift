@@ -8,21 +8,22 @@
 import SwiftUI
 
 struct SetupView: View {
+    @Binding var path: [Route]
+
     var body: some View {
         VStack {
-            Text("Inital setup information, then move to bluetooth.")
-            Text("Maybe some fancy animation about turning on farm.")
             Spacer()
-            NavigationLink {
-                BluetoothConnectionView()
-            } label: {
-                Text("Scan for device")
+            Text("Maybe some fancy animation about\n  turning farm into pairing mode.")
+            Spacer()
+            Button("Got it!") {
+                path.append(.bluetooth)
             }
-
+            .fontWeight(.semibold)
+            .foregroundStyle(Color.green)
         }
     }
 }
 
 #Preview {
-    SetupView()
+    SetupView(path: .constant([]))
 }

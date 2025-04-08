@@ -13,7 +13,6 @@ struct ScanButtonView: View {
 
     var body: some View {
         ZStack {
-            // Zielone koło z wyciętym napisem SCAN
             Circle()
                 .fill(Color.green)
                 .frame(width: 200, height: 200)
@@ -33,12 +32,20 @@ struct ScanButtonView: View {
             RingWithCutout(segmentGap: .degrees(5), segmentCount: 13)
                 .frame(width: 225, height: 225)
                 .foregroundStyle(Color.green)
-                .rotationEffect(.degrees(rotation + 15)) // Slightly different rotation
+                .rotationEffect(.degrees(-rotation - 12)) // Slightly different rotation
         }
         .onAppear {
             if isAnimating {
                 // Start the animation only if isAnimating is true
-                withAnimation(.linear(duration: 10).repeatForever(autoreverses: false)) {
+                withAnimation(.linear(duration: 20).repeatForever(autoreverses: false)) {
+                    rotation = isAnimating ? 360 : 0
+                }
+            }
+        }
+        .onChange(of: isAnimating) {
+            if isAnimating {
+                // Start the animation only if isAnimating is true
+                withAnimation(.linear(duration: 20).repeatForever(autoreverses: false)) {
                     rotation = 360
                 }
             }
