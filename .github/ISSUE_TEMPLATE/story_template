@@ -1,0 +1,60 @@
+name: User Story
+description: Describe a new user-facing feature or enhancement using the "As a / I want / So that" format
+title: "[Story] "
+labels: [story, enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please use this template to describe a new feature or requirement in a user-centric format.
+
+  - type: input
+    id: role
+    attributes:
+      label: As a...
+      description: Who is the user or persona?
+      placeholder: e.g. Admin, Customer, Developer
+    validations:
+      required: true
+
+  - type: input
+    id: goal
+    attributes:
+      label: I want to...
+      description: What does the user want to do?
+      placeholder: e.g. view recent transactions
+    validations:
+      required: true
+
+  - type: input
+    id: benefit
+    attributes:
+      label: So that...
+      description: Why does the user want this?
+      placeholder: e.g. I can manage my spending more effectively
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Additional Details
+      description: Include any extra information, design notes, links to mocks, or implementation ideas.
+      placeholder: |
+        - Include wireframes or design references if applicable.
+        - Mention any dependencies or related tickets.
+        - Add any technical considerations here.
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Define what conditions must be met for this story to be considered complete.
+      placeholder: |
+        - [ ] Feature is accessible via user dashboard
+        - [ ] Displays last 10 transactions
+        - [ ] Follows mobile responsive layout
+    validations:
+      required: false
