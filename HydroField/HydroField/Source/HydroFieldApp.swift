@@ -7,11 +7,15 @@
 
 import SwiftUI
 
+/// The main entry point for the HydroField application.
 @main
 struct HydroFieldApp: App {
+    
+    /// The main scene of the app, which displays the `HydroFieldView`.
     var body: some Scene {
         WindowGroup {
-            StartScreenView()
+            HydroFieldView()
         }
     }
 }
+
