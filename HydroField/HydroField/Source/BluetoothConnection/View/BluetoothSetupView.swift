@@ -24,8 +24,8 @@ struct BluetoothConnectionView: View {
     var body: some View {
         ZStack {
             VStack {
+                createBypassButton()
                 Spacer()
-
                 // Scan button that triggers Bluetooth scanning
                 createScanButton()
                     .padding(.top, 150)
@@ -51,6 +51,16 @@ struct BluetoothConnectionView: View {
     }
 
     // MARK: - Methods
+    
+    /// Creates the bypass button thats skip bluetooth connection.
+    /// - Returns: A `Button` view thats skips bluetooth connection.
+    private func createBypassButton() -> some View {
+        Button {
+            path.append(.wifi)
+        } label: {
+            Text("Bypass bluetooth connection")
+        }
+    }
 
     /// Creates the scan button view that triggers Bluetooth scanning.
     /// - Returns: A `Button` view that starts scanning for devices.
