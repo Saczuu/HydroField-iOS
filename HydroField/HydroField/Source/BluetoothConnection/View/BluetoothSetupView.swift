@@ -38,7 +38,7 @@ struct BluetoothConnectionView: View {
             .onChange(of: manager.isConnected) { _, newValue in
                 // Transition to Wi-Fi connection view if Bluetooth is connected
                 if newValue {
-                    path.append(.wifi)
+                    path.append(.wifiList)
                 }
             }
 
@@ -48,6 +48,7 @@ struct BluetoothConnectionView: View {
                 createCurrentStateLabel()
             }
         }
+        .navigationTitle("Blutooth pairing")
     }
 
     // MARK: - Methods
@@ -56,7 +57,7 @@ struct BluetoothConnectionView: View {
     /// - Returns: A `Button` view thats skips bluetooth connection.
     private func createBypassButton() -> some View {
         Button {
-            path.append(.wifi)
+            path.append(.wifiList)
         } label: {
             Text("Bypass bluetooth connection")
         }

@@ -40,8 +40,11 @@ struct HydroFieldView: View {
                     SetupView(path: $path)
                 case .bluetooth:
                     BluetoothConnectionView(path: $path)
-                case .wifi:
-                    WifiConnectionView(path: $path)
+                case .wifiList:
+                    WifiConnectionListView(path: $path)
+                case .wifiConfig(let connection):
+                    WifiConnectionConfigView(path: $path,
+                                             connection: connection)
                 }
             }
         }
