@@ -1,5 +1,9 @@
+# Build and Xcode junk
 build/
 DerivedData/
+.DS_Store
+
+# Xcode workspace/user settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -8,8 +12,29 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata/
+*.xcuserstate
 *.xcscmblueprint
 *.xccheckout
-*.xcuserstate
-.DS_Store
+xcuserdata/
+
+# Xcode scheme management
+xcshareddata/WorkspaceSettings.xcsettings
+
+# Swift Package Manager
+.build/
+Packages/
+.swiftpm/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
